@@ -16,7 +16,7 @@ describe Request do
     request.should_not be_valid
   end
 
-  it 'is invalid if page is not a positive integer' do
+  it 'is invalid if a page is not a positive integer' do
     request = Request.new(uid: 1, page: 'a')
     request.should_not be_valid
   end

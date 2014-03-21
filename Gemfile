@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 1.2'
 # enable features such as static asset serving and logging on Heroku
 gem 'rails_12factor', group: :production
 
+gem 'httparty'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -35,6 +37,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
+  gem 'pry'
 end
 
 # Use ActiveModel has_secure_password
