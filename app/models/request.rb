@@ -6,5 +6,5 @@ class Request
   attr_accessor(:uid, :pub0, :page)
 
   validates :uid, presence: true
-  validates :page, presence: true, format: { with: /[1-9]\d*/, message: 'must be a positive integer.' }
+  validates :page, presence: true, format: { with: /^\d*$/, multiline: true, message: 'must be a positive integer.' }
 end
