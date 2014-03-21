@@ -1240,3 +1240,19 @@ $topbar-link-color: #222;
 // $range-slider-handle-cursor: pointer;
 
 @import 'foundation';
+
+/* Custom styles */
+div.form-wrapper {
+    min-height: 128px;
+}
+div.wrapper {
+    min-height: 64px;
+}
+div.error {
+    small.error {
+        margin-bottom: 0;
+    }
+    input {
+        border: 1px solid red;
+    }
+}

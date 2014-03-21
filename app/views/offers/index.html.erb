@@ -2,20 +2,53 @@
     <div class="small-12 columns">
         <div class="panel form-wrapper">
 
-            <form name="requestform" novalidate>
+            <form name="requestform" ng-submit="loadOffers(request)" novalidate>
                 <div class="row">
-                    <div class="large-3 columns error">
-                        <input type="text" name="uid" placeholder="uid" autofocus />
+
+                    <div class="large-3 columns" ng-class="{error: errors.uid}">
+                        <input type="text"
+                            name="uid"
+                            ng-model="request.uid"
+                            placeholder="uid"
+                            autofocus />
+                        <div ng-show="errors.uid">
+                            <small class="error" ng-repeat="message in errors.uid">
+                                {{message}}
+                            </small>
+                        </div>
                     </div>
+
+                    <div class="large-3 columns" ng-class="{error: errors.pub0}">
+                        <input type="text"
+                            name="pub0"
+                            ng-model="request.pub0"
+                            placeholder="pub0" />
+                        <div ng-show="errors.pub0">
+                            <small class="error" ng-repeat="message in errors.pub0">
+                                {{message}}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="large-3 columns" ng-class="{error: errors.page}">
+                        <input type="text"
+                            name="page"
+                            ng-model="request.page"
+                            placeholder="page" />
+                        <div ng-show="errors.page">
+                            <small class="error" ng-repeat="message in errors.page">
+                                {{message}}
+                            </small>
+                        </div>
+                    </div>
+
                     <div class="large-3 columns">
-                        <input type="text" name="pub0" placeholder="pub0" />
+                        <input type="submit"
+                            value="{{submitValue()}}"
+                            class="button postfix large-4 columns"
+                            ng-disabled="loading" />
                     </div>
-                    <div class="large-3 columns">
-                        <input type="text" name="page" placeholder="page" />
-                    </div>
-                    <div class="large-3 columns">
-                        <input type="submit" class="button postfix large-4 columns" value="Load" />
-                    </div>
+
                 </div>
             </form>
 
