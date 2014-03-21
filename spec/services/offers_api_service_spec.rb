@@ -10,37 +10,35 @@ describe OffersApiService do
     ) }
 
     context 'using valid request object' do
+      let! (:request) { Request.new(uid: 1, page: 1) }
+      let! (:service) { OffersApiService.new(request) }
+
       it 'should initialize with correct api_key' do
-        request = Request.new(uid: 1, page: 1)
-        service = OffersApiService.new(request)
         api_key = service.instance_variable_get(:@api_key)
         api_key.should eq(service_config[:api_key])
       end
+
       it 'should initialize with correct appid' do
-        request = Request.new(uid: 1, page: 1)
-        service = OffersApiService.new(request)
         options = service.instance_variable_get(:@options)
         options[:query][:appid].should eq(service_config[:appid])
       end
+
       it 'should initialize with correct uid' do
-        request = Request.new(uid: 1, page: 1)
-        service = OffersApiService.new(request)
         options = service.instance_variable_get(:@options)
         options[:query][:uid].should eq(request.uid)
       end
+
       it 'should initialize with correct pub0' do
-        request = Request.new(uid: 1, page: 1)
-        service = OffersApiService.new(request)
         options = service.instance_variable_get(:@options)
         options[:query][:pub0].should eq(request.pub0)
       end
+
       it 'should initialize with correct page' do
-        request = Request.new(uid: 1, page: 1)
-        service = OffersApiService.new(request)
         options = service.instance_variable_get(:@options)
         options[:query][:page].should eq(request.page)
       end
     end
+
     context 'using invalid request object' do
       it 'should raise an exception' do
         request = Request.new(page: 1)
@@ -55,9 +53,9 @@ describe OffersApiService do
   end
 
   describe '#get_offers' do
+    let! (:service) { OffersApiService.new(Request.new(uid: 1, page: 1)) }
+
     it 'should return a list of offers' do
-      request = Request.new(uid: 1, page: 1)
-      service = OffersApiService.new(request)
       response = service.get_offers
       response['offers'].should match_array([])
     end
