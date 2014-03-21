@@ -39,6 +39,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', '$http', 'loader', function($
 
     $scope.loadOffers = function(request) {
         $scope.errors = {};
+        $scope.messages = {};
+        $scope.offers = {};
         $http.get('/offers.json', {params: request}).
             success(function(data, status, header) {
                 $scope.message = data.message;

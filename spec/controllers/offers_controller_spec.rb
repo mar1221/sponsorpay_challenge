@@ -45,7 +45,7 @@ describe OffersController do
 
         it "returns a hash with errors" do
           get :index, format: :json
-          expected_response = { uid: ["can't be blank"], page: ["can't be blank","must be a positive integer."] }.to_json
+          expected_response = { uid: ["can't be blank"], page: ["can't be blank"] }.to_json
           expect(response.body).to eq(expected_response)
         end
       end
