@@ -9,7 +9,7 @@
                         <input type="text"
                             name="uid"
                             ng-model="request.uid"
-                            placeholder="uid"
+                            placeholder="User ID"
                             autofocus />
                         <div ng-show="errors.uid">
                             <small class="error" ng-repeat="message in errors.uid">
@@ -22,7 +22,7 @@
                         <input type="text"
                             name="pub0"
                             ng-model="request.pub0"
-                            placeholder="pub0" />
+                            placeholder="Custom parameters" />
                         <div ng-show="errors.pub0">
                             <small class="error" ng-repeat="message in errors.pub0">
                                 {{message}}
@@ -34,7 +34,7 @@
                         <input type="text"
                             name="page"
                             ng-model="request.page"
-                            placeholder="page" />
+                            placeholder="Page" />
                         <div ng-show="errors.page">
                             <small class="error" ng-repeat="message in errors.page">
                                 {{message}}
