@@ -19,20 +19,17 @@ describe OffersController do
     context "json request" do
       context "with valid required params" do
 
-        context 'without a response signature' do
-          it 'raises an exception' do
-            pending('Pending')
-          end
-        end
-
         context 'with a response signature' do
 
           it "responds with an HTTP 200 status code" do
-            pending("Pending")
+            get :index, uid: 1, page: 1, format: :json
+            expect(response.status).to eq(200)
           end
 
           it 'returns a list of offers' do
-            pending("Pending")
+            get :index, uid: 1, page: 1, format: :json
+            parsed_response = ActiveSupport::JSON.decode(response.body)
+            expect(parsed_response['offers']).to eq([])
           end
         end
       end
