@@ -1,23 +1,24 @@
 require "spec_helper"
 
 describe Request do
+  let (:request) { Request.new(uid: 1, pub0: '1', page: 1) }
+
   it 'is valid with valid attributes' do
-    request = Request.new(uid: 1, page: 1)
     request.should be_valid
   end
 
   it 'is invalid without a uid' do
-    request = Request.new(page: 1)
+    request.uid = nil
     request.should_not be_valid
   end
 
   it 'is invalid without a page' do
-    request = Request.new(uid: 1)
+    request.page = nil
     request.should_not be_valid
   end
 
   it 'is invalid if a page is not a positive integer' do
-    request = Request.new(uid: 1, page: 'a')
+    request.page = 'a'
     request.should_not be_valid
   end
 end
