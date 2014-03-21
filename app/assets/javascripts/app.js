@@ -24,7 +24,7 @@ app.config(['$httpProvider', function($httpProvider) {
 }]);
 
 /* Loader service - responsible for showing loding bar durring requests */
-angular.module('app').service('loader', ['$rootScope', 'ngProgress', function($rootScope, ngProgress) {
+app.service('loader', ['$rootScope', 'ngProgress', function($rootScope, ngProgress) {
     $rootScope.$on("event:startLoading", function(){
         ngProgress.start();
     });
