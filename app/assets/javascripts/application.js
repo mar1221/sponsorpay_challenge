@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require angular
 //= require angular-animate
+//= require ng-progress
 //= require app
 
 $(function(){ $(document).foundation(); });
