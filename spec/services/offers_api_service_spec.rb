@@ -56,7 +56,10 @@ describe OffersApiService do
 
   describe '#get_offers' do
     it 'should return a list of offers' do
-
+      request = Request.new(uid: 1, page: 1)
+      service = OffersApiService.new(request)
+      response = service.get_offers
+      response['offers'].should match_array([])
     end
   end
 end
