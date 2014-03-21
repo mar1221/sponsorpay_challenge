@@ -30,6 +30,7 @@ gem 'rails_12factor', group: :production
 
 gem 'httparty'
 gem 'foundation-rails'
+gem 'angularjs-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
