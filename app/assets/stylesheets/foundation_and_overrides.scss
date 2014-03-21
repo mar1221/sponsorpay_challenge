@@ -1130,12 +1130,12 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+$topbar-bg-color: #eee;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
 // $topbar-height: 45px;
-// $topbar-margin-bottom: 0;
+$topbar-margin-bottom: 32px;
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: normal;
@@ -1151,7 +1151,7 @@
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
+$topbar-link-color: #222;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
