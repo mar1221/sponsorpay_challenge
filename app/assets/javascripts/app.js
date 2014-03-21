@@ -62,6 +62,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', '$http', 'loader', function($
     };
 }]);
 
+/* Bootstrap the application manually for greater controll */
 $(document).on('ready page:load', function() {
     angular.bootstrap(document, ['app']);
 });
