@@ -27,7 +27,9 @@ class OffersApiService
         '../../../config/service_config.yml', __FILE__))
       )
     )
+
     @api_key = service_config[:api_key]
+
     @options = {
       query: {
         appid: service_config[:appid],
@@ -43,18 +45,27 @@ class OffersApiService
       }
     }
 
-    sorted_array = @options[:query].sort.map do |key,value|
-      "#{key.to_s}=#{value.to_s}"
-    end
-    params_with_key = sorted_array.join('&') + '&' + @api_key
-    @options[:query][:hashkey] = Digest::SHA1.hexdigest params_with_key
+    @options[:query][:hashkey] = calculate_hashkey(@options)
   end
 
   def get_offers
     response = self.class.get('', @options)
-    hashed_response = Digest::SHA1.hexdigest(response.body + @api_key)
-    response_signature = response.headers['x-sponsorpay-response-signature']
-    raise MissingSignature unless hashed_response == response_signature
-    response
+    verify_response_signature(response)
   end
+
+  private
+
+    def calculate_hashkey(options)
+      sorted_array = options[:query].sort.map do |key,value|
+        "#{key.to_s}=#{value.to_s}"
+      end
+      Digest::SHA1.hexdigest(sorted_array.join('&') + '&' + @api_key)
+    end
+
+    def verify_response_signature(response)
+      hashed_response = Digest::SHA1.hexdigest(response.body + @api_key)
+      response_signature = response.headers['x-sponsorpay-response-signature']
+      raise MissingSignature unless hashed_response == response_signature
+      response
+    end
 end
