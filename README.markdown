@@ -1,4 +1,4 @@
-# Sponsorpay challenge README
+# SponsorPay challenge README
 
 Working demo [HERE](http://dry-dawn-9575.herokuapp.com/ "Sponsorpay challenge demo").
 
