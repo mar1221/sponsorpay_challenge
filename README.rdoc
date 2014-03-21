@@ -1,28 +1,21 @@
-== README
+== Sponsorpay challenge README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Working demo [HERE](http://dry-dawn-9575.herokuapp.com/ "Sponsorpay challenge demo").
 
-Things you may want to cover:
+=== Ruby and Rails versions
 
-* Ruby version
+* Ruby version - 2.1.1
 
-* System dependencies
+* Rails version - 4.0.4
 
-* Configuration
+=== Tests
 
-* Database creation
+Tests are written in RSpec: `$ bundle exec rspec spec/`
 
-* Database initialization
+=== Configurations
 
-* How to run the test suite
+OffersApiService communicating with SponsorPay offers API can be configured in `config/service_config.yml`
 
-* Services (job queues, cache servers, search engines, etc.)
+=== Others
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Application is running without a DB
