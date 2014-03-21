@@ -54,7 +54,7 @@ class OffersApiService
     response = self.class.get('', @options)
     hashed_response = Digest::SHA1.hexdigest(response.body + @api_key)
     response_signature = response.headers['x-sponsorpay-response-signature']
-    raise TemperedData if hashed_response != response_signature
+    raise TemperedData unless hashed_response == response_signature
     response
   end
 end

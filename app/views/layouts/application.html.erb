@@ -1,14 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>SponsorpayChallenge</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SponsorpayChallenge</title>
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "vendor/modernizr", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+    <!-- Header and Nav -->
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <!-- Title Area -->
+            <li class="name">
+                <h1>
+                    <a href="<%= root_path %>">
+                        Sponsorpay Challenge
+                    </a>
+                </h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+    </nav>
+    <!-- End Header and Nav -->
 
+    <!-- Main Grid Section -->
+    <%= yield %>
+    <!-- End Grid Section -->
+
+    <!-- Footer -->
+    <footer class="row">
+        <div class="large-12 columns">
+            <hr />
+            <div class="row">
+                <div class="large-12 columns">
+                    <p>© Copyright no one at all. Go to town.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
 </body>
 </html>
