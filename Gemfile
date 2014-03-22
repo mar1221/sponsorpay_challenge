@@ -39,6 +39,10 @@ group :development, :test do
   gem 'pry'
 end
 
+group :test do
+  gem 'webmock', '~> 1.15.2'
+  gem 'vcr'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

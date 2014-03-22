@@ -22,28 +22,40 @@ describe OffersController do
         context 'with a response signature' do
 
           it "responds with an HTTP 200 status code" do
-            get :index, uid: 1, page: 1, format: :json
-            expect(response.status).to eq(200)
+            matching_uri = VCR.request_matchers.uri_without_params(:timestamp, :hashkey)
+            VCR.use_cassette('valid_response', match_requests_on: [:method, matching_uri]) do
+              get :index, uid: 1, page: 1, format: :json
+              expect(response.status).to eq(200)
+            end
           end
 
           it 'returns a list of offers' do
-            get :index, uid: 1, page: 1, format: :json
-            parsed_response = ActiveSupport::JSON.decode(response.body)
-            expect(parsed_response['offers']).to eq([])
+            matching_uri = VCR.request_matchers.uri_without_params(:timestamp, :hashkey)
+            VCR.use_cassette('valid_response', match_requests_on: [:method, matching_uri]) do
+              get :index, uid: 1, page: 1, format: :json
+              parsed_response = ActiveSupport::JSON.decode(response.body)
+              expect(parsed_response['offers']).to eq([])
+            end
           end
         end
       end
 
       context "with invalid params" do
         it "responds with HTTP 422 status code" do
-          get :index, format: :json
-          expect(response.status).to eq(422)
+          matching_uri = VCR.request_matchers.uri_without_params(:timestamp, :hashkey)
+          VCR.use_cassette('invalid_response', match_requests_on: [:method, matching_uri]) do
+            get :index, format: :json
+            expect(response.status).to eq(422)
+          end
         end
 
         it "returns a hash with errors" do
-          get :index, format: :json
-          expected_response = { uid: ["can't be blank"], page: ["can't be blank"] }.to_json
-          expect(response.body).to eq(expected_response)
+          matching_uri = VCR.request_matchers.uri_without_params(:timestamp, :hashkey)
+          VCR.use_cassette('invalid_response', match_requests_on: [:method, matching_uri]) do
+            get :index, format: :json
+            expected_response = { uid: ["can't be blank"], page: ["can't be blank"] }.to_json
+            expect(response.body).to eq(expected_response)
+          end
         end
       end
 
