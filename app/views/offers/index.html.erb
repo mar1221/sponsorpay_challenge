@@ -1,88 +1,12 @@
 <div class="row">
     <div class="small-12 columns">
-        <div class="panel form-wrapper">
-
-            <form name="requestform" ng-submit="loadOffers(request)" novalidate>
-                <div class="row">
-
-                    <div class="large-3 columns" ng-class="{error: errors.uid}">
-                        <input type="text"
-                            name="uid"
-                            ng-model="request.uid"
-                            placeholder="User ID"
-                            autofocus />
-                        <div ng-show="errors.uid">
-                            <small class="error" ng-repeat="message in errors.uid">
-                                {{message}}
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="large-3 columns" ng-class="{error: errors.pub0}">
-                        <input type="text"
-                            name="pub0"
-                            ng-model="request.pub0"
-                            placeholder="Custom parameters" />
-                        <div ng-show="errors.pub0">
-                            <small class="error" ng-repeat="message in errors.pub0">
-                                {{message}}
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="large-3 columns" ng-class="{error: errors.page}">
-                        <input type="text"
-                            name="page"
-                            ng-model="request.page"
-                            placeholder="Page" />
-                        <div ng-show="errors.page">
-                            <small class="error" ng-repeat="message in errors.page">
-                                {{message}}
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="large-3 columns">
-                        <input type="submit"
-                            value="{{submitValue()}}"
-                            class="button postfix large-4 columns"
-                            ng-disabled="loading" />
-                    </div>
-
-                </div>
-            </form>
-
-        </div>
+        <%= render 'form' %>
     </div>
 </div>
 
 <div class="row">
     <div class="small-12 columns wrapper">
-
-        <div class="alert-box info" ng-show="message">
-            {{message}}
-        </div>
-
-        <div class="alert-box warning" ng-show="responseError">
-            {{responseError}}
-        </div>
-
-        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3"
-             ng-show="loaded === true && offers.length > 0">
-            <li ng-repeat="offer in offers">
-                <div class="offer">
-                    <div class="title"><h2><small>{{offer.title}}</small><h2></div>
-                    <div class="payout">{{offer.payout}}</div>
-                    <div class="thumbnail">
-                        <img ng-src="{{offer.thumbnail.hires}}" />
-                    </div>
-                </div>
-            </li>
-        </ul>
-
-        <div class="no_offers text-center"
-            ng-show="loaded === true && offers.length === 0">
-            No offers
-        </div>
+        <%= render 'messages' %>
+        <%= render 'offers' %>
     </div>
 </div>
