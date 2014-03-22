@@ -65,7 +65,12 @@ class OffersApiService
     def verify_response_signature(response)
       hashed_response = Digest::SHA1.hexdigest(response.body + @api_key)
       response_signature = response.headers['x-sponsorpay-response-signature']
-      raise MissingSignature unless hashed_response == response_signature
+      # throw exception if signature mismatch.
+      # continue if 401 - which means that invalid hashkey has been provided
+      # and we should inform the user
+      unless hashed_response == response_signature || response.code == 401
+        raise MissingSignature
+      end
       response
     end
 end
