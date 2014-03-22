@@ -1,9 +1,13 @@
 require "spec_helper"
 
 describe OffersApiService do
+  def matching_uri
+    VCR.request_matchers.uri_without_params(:timestamp, :hashkey)
+  end
+
   describe '#initialize' do
 
-    let(:service_config) { HashWithIndifferentAccess.new(
+    let!(:service_config) { HashWithIndifferentAccess.new(
       YAML.load(File.read(File.expand_path(
         '../../../config/service_config.yml', __FILE__))
       )
@@ -40,8 +44,9 @@ describe OffersApiService do
     end
 
     context 'using invalid request object' do
+      let!(:request) { Request.new(page: 1) }
+
       it 'should raise an exception' do
-        request = Request.new(page: 1)
         expect { OffersApiService.new(request) }.to raise_error(OffersApiService::InvalidRequest)
       end
     end
@@ -54,10 +59,23 @@ describe OffersApiService do
 
   describe '#get_offers' do
     let! (:service) { OffersApiService.new(Request.new(uid: 1, page: 1)) }
+    before do
+      VCR.use_cassette('valid_response', match_requests_on: [:method, matching_uri]) do
+        @response = service.get_offers
+      end
+    end
 
     it 'should return a list of offers' do
-      response = service.get_offers
-      response['offers'].should match_array([])
+      @response['offers'].should match_array([])
     end
+
+    context 'with signature mismatch' do
+      it 'should raise an exception' do
+        VCR.use_cassette('wrong_signature', match_requests_on: [:method, matching_uri]) do
+          expect { service.get_offers }.to raise_error(OffersApiService::MissingSignature)
+        end
+      end
+    end
+
   end
 end
