@@ -9,6 +9,6 @@ class Request
   validates :page, presence: true, format: {
     with: /^\d*$/,
     multiline: true,
-    message: 'must be a positive integer.'
+    message: 'must be a positive integer'
   }
 end
