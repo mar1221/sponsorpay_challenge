@@ -37,10 +37,9 @@ app.service('loader', ['$rootScope', 'ngProgress', function($rootScope, ngProgre
 app.controller('AppCtrl', ['$scope', '$rootScope', '$http', 'loader', function($scope, $rootScope, $http, loader) {
     $scope.loaded = false;
 
+    /* Load offers */
     $scope.loadOffers = function(request) {
-        $scope.errors = {};
-        $scope.messages = {};
-        $scope.offers = {};
+        $scope.resetValues();
         $http.get('/offers.json', {params: request}).
             success(function(data, status, header) {
                 $scope.message = data.message;
@@ -48,11 +47,21 @@ app.controller('AppCtrl', ['$scope', '$rootScope', '$http', 'loader', function($
                 $scope.loaded = true;
             }).
             error(function(data, status) {
+                $scope.responseError = data.message;
                 $scope.errors = data;
             }
         );
     };
 
+    /* Reset scope variables */
+    $scope.resetValues = function() {
+        $scope.errors = {};
+        $scope.message = null;
+        $scope.responseError = null;
+        $scope.offers = {};
+    }
+
+    /* Show loading on submit button during a request */
     $scope.submitValue = function() {
         if ($rootScope.loading === true) {
             return 'Loading ...';

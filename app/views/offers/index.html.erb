@@ -59,8 +59,12 @@
 <div class="row">
     <div class="small-12 columns wrapper">
 
-        <div data-alert class="alert-box warning" ng-show="message">
+        <div class="alert-box info" ng-show="message">
             {{message}}
+        </div>
+
+        <div class="alert-box warning" ng-show="responseError">
+            {{responseError}}
         </div>
 
         <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3"
